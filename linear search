@@ -1,33 +1,67 @@
 #include<stdio.h>
-
-
+#include<string.h>
+struct CODON
+{
+	char nucleotides[100];
+	
+};
+struct DNA
+{
+	struct CODON j[100];
+	int t;
+};
+struct RESULT
+{
+	int length;
+	int REPITITION_OF_STRING[10];
+};
+struct DNA input_function()
+{
+	struct DNA k;
+	printf("Enter the number of test cases of the nucleotides\n");
+	scanf("%d",&k.t);
+	printf("Enter the nucleotides\n");
+	for(int i=0;i<k.t;i++)
+	{
+		scanf("%s",k.j[i].nucleotides);
+	}
+	return k;
+}
+struct RESULT compute(struct DNA k)
+{
+	struct RESULT z;
+	int i, b;
+	for(int a=0;a<k.t;a++)
+	{
+		for (i = 0; i < strlen(k.j[a].nucleotides); i++)
+	 	{
+			for (b=i+1;b< strlen(k.j[a].nucleotides);b++)
+			{
+				if (k.j[a].nucleotides[i]==k.j[a].nucleotides[b])
+				{
+					
+					z.REPITITION_OF_STRING[a]=b+1;
+				}
+				
+			}
+		}
+	}
+	return z;
+	
+}
+void display (struct RESULT z,struct DNA k)
+{
+	for(int y=0;y<k.t;y++)
+	{
+		printf("%d\n",z.REPITITION_OF_STRING[y]);
+	}
+}
 int main()
 {
-    int a[100],i,n,key;
-    printf("\n Enter the  numbers of elements \n ");
-    scanf("%d",&n);
-    printf("\n Enter %d elements \n",n);
-    for(i=0;i<n;i++)
-    {
-        scanf("%d",&a[i]);
-    }
-    printf("\n enter the key element \n");
-    scanf("%d",&key);
-    project(a,n,key);
-    return 0;
-}
-void project(int a[100],int n,int key)
-{
-    int i;
-    for(i=0;i<=n;i++)
-    {
-        if (key==a[i])
-        {
-            printf("\n element %d found at %d position \n",key,i+1);
-            exit(0);
-        }
-    }printf("\n element not found \n");
-    
-}
-        
-    
+	struct DNA k;
+	struct RESULT z;
+	k=input_function();
+	z=compute(k);
+	display(z,k);
+} 
+	
